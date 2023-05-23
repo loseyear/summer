@@ -1,10 +1,25 @@
 {
   "name": "limbooooooo",
   "version": "0.0.1",
+  "type": "module",
   "description": "",
   "main": "",
   "scripts": {
-    "lint": "yarn packages/demo run lint"
+    "prepare": "husky install",
+    "commit": "git-cz",
+    "lint": "yarn workspace spring lint"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "cz-git": "^1.6.1",
+    "git-cz": "^4.9.0",
+    "husky": "^8.0.3"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +28,5 @@
   "workspaces": [
     "packages/*",
     "components/*"
-  ],
-  "packageManager": "yarn@3.1.0"
+  ]
 }

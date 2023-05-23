@@ -1,20 +1,10 @@
 import axios from 'axios'
 
 interface Request {
-  (
-    url: string,
-    data?: any,
-    load?: boolean,
-    method?: string,
-  ): any
+  (url: string, data?: unknown, load?: boolean, method?: string): unknown
 }
 
-const request: Request = async (
-  url,
-  data,
-  load = false,
-  method = 'POST',
-) => {
+const request: Request = async (url, data, load = false, method = 'POST') => {
   if (load) console.log(load)
   return axios({
     method,
