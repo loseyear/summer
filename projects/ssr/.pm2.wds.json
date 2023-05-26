@@ -1,0 +1,30 @@
+{
+  "apps": {
+    "name": "summer",
+    "script": "node_modules/.bin/ts-node -r tsconfig-paths/register src/bin/index.ts",
+    "cwd": "./",
+    "args": "",
+    "interpreter": "",
+    "interpreter_args": "",
+    "watch": [
+      "src",
+      "package.json",
+      "node_modules"
+    ],
+    "ignore_watch": [
+      "log",
+      "mock"
+    ],
+    "exec_mode": "fork",
+    "instances": 1,
+    "max_memory_restart": "1024M",
+    "error_file": "./log/pm2-error.log",
+    "out_file": "./log/pm2.log",
+    "merge_logs": true,
+    "log_date_format": "YYYY-MM-DD HH:mm:ss SSS",
+    "min_uptime": "60s",
+    "max_restarts": 30,
+    "autorestart": true,
+    "restart_delay": 60
+  }
+}
