@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import Router, { RouterContext } from 'koa-router'
 
-type RouteHandler = (ctx: RouterContext<any, any>) => Promise<void>;
+type RouteHandler = (ctx: RouterContext<any, any>) => Promise<void>
 
 const router = new Router<any, any>({
   prefix: '/api',
@@ -10,8 +10,7 @@ const router = new Router<any, any>({
 
 const controllerPath = path.join(__dirname, '/../', 'controller')
 
-fs
-  .readdirSync(controllerPath)
+fs.readdirSync(controllerPath)
   .filter((f) => f.endsWith('.ts'))
   .forEach((fileName) => {
     const filePath = path.join(controllerPath, fileName)
@@ -20,7 +19,7 @@ fs
     Object.entries(route).forEach(([key, value]) => {
       const [method, endpoint] = key.split(' ')
       const routeHandler = value as RouteHandler
-      (router[method.toLowerCase() as keyof Router<any, any>] as any)(endpoint, routeHandler)
+      ;(router[method.toLowerCase() as keyof Router<any, any>] as any)(endpoint, routeHandler)
     })
   })
 
