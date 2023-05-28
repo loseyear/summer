@@ -1,4 +1,4 @@
-import Koa, { Context } from 'koa'
+import Koa from 'koa'
 import koaBody from 'koa-body'
 
 import { port } from '@/config/app'
