@@ -3,14 +3,23 @@ import koaBody from 'koa-body'
 
 import { port } from '@/config/app'
 import router from '@/router'
-import { mysqlConnection } from '@/config/mysql'
+import sql from '@/library/sql'
 
 const app = new Koa()
 
-mysqlConnection()
+/*
+HttpMethodEnum["POST"] = "POST";
+HttpMethodEnum["GET"] = "GET";
+HttpMethodEnum["PUT"] = "PUT";
+HttpMethodEnum["PATCH"] = "PATCH";
+HttpMethodEnum["DELETE"] = "DELETE";
+HttpMethodEnum["HEAD"] = "HEAD";
+*/
 
 app.use(koaBody())
-app.use(router())
+app.use(sql(app))
+app.use(router.routes())
+app.use(router.allowedMethods())
 
 app.listen(
   port, () => {

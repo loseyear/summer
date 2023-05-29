@@ -2,11 +2,23 @@ import { Context } from 'koa'
 
 const getTest = async (ctx: Context) => {
   try {
+    const username: string = ctx.query.username as string
+
+    const data = await ctx
+      .sql
+      .users
+      .findOne({
+        where: {
+          username,
+        }
+      })
+
     ctx.body = {
       status: 200,
-      data: {},
+      data: data,
     }
   } catch (e) {
+    console.log(e)
     ctx.body = {
       status: 200,
       data: {},

@@ -19,15 +19,15 @@
     "koa": "^2.14.2",
     "koa-body": "^6.0.1",
     "koa-router": "^12.0.0",
-    "mysql": "^2.18.1",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.16"
+    "mysql2": "^3.3.3",
+    "sequelize": "^6.31.1"
   },
   "devDependencies": {
     "@types/koa": "^2.13.6",
     "@types/koa-router": "^7.4.4",
     "@types/koa__router": "^12.0.0",
     "@types/node": "^20.2.3",
+    "@types/sequelize": "^4.28.15",
     "eslint": "^8.41.0",
     "prettier": "^2.8.8",
     "ts-node": "^10.9.1",

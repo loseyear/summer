@@ -23,4 +23,4 @@ fs.readdirSync(controllerPath)
     })
   })
 
-export default () => router.routes()
+export default router
