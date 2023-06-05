@@ -1,4 +1,7 @@
 import Koa from 'koa'
+import path from 'path'
+// import cors from '@koa/cors'
+import serve from 'koa-static'
 import koaBody from 'koa-body'
 
 import { port } from '@/config/app'
@@ -8,15 +11,20 @@ import sql from '@/library/sql'
 const app = new Koa()
 
 /*
-HttpMethodEnum["POST"] = "POST";
-HttpMethodEnum["GET"] = "GET";
-HttpMethodEnum["PUT"] = "PUT";
-HttpMethodEnum["PATCH"] = "PATCH";
-HttpMethodEnum["DELETE"] = "DELETE";
-HttpMethodEnum["HEAD"] = "HEAD";
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+  })
+)
 */
-
-app.use(koaBody())
+app.use(
+  koaBody({
+    multipart: true,
+  })
+)
+app.use(serve(path.resolve(__dirname, '../assets/')))
+app.use(serve(path.resolve(__dirname, '../../upload/')))
 app.use(sql(app))
 app.use(router.routes())
 app.use(router.allowedMethods())
