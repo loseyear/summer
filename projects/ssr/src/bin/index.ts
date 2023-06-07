@@ -1,6 +1,6 @@
 import Koa from 'koa'
 import path from 'path'
-// import cors from '@koa/cors'
+import cors from '@koa/cors'
 import serve from 'koa-static'
 import koaBody from 'koa-body'
 
@@ -10,14 +10,12 @@ import sql from '@/library/sql'
 
 const app = new Koa()
 
-/*
 app.use(
   cors({
     origin: '*',
     credentials: true,
   })
 )
-*/
 app.use(
   koaBody({
     multipart: true,
@@ -25,12 +23,13 @@ app.use(
 )
 app.use(serve(path.resolve(__dirname, '../assets/')))
 app.use(serve(path.resolve(__dirname, '../../upload/')))
+
 app.use(sql(app))
-app.use(router.routes())
-app.use(router.allowedMethods())
+app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(
-  port, () => {
+  port,
+  () => {
     console.log(`Server is running on http://localhost:${port}`)
-  }
+  },
 )

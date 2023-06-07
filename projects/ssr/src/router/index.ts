@@ -1,10 +1,11 @@
 import fs from 'fs'
 import path from 'path'
-import Router, { RouterContext } from 'koa-router'
+import Router, { RouterContext } from '@koa/router'
+import { DefaultContext, DefaultState } from 'koa'
 
-type RouteHandler = (ctx: RouterContext<any, any>) => Promise<void>
+type RouteHandler = (ctx: RouterContext<DefaultState, DefaultContext>) => Promise<void>
 
-const router = new Router<any, any>({
+const router = new Router<DefaultState, DefaultContext>({
   prefix: '/api',
 })
 
@@ -19,7 +20,9 @@ fs.readdirSync(controllerPath)
     Object.entries(route).forEach(([key, value]) => {
       const [method, endpoint] = key.split(' ')
       const routeHandler = value as RouteHandler
-      ;(router[method.toLowerCase() as keyof Router<any, any>] as any)(endpoint, routeHandler)
+      const routerMethod =  method.toLocaleLowerCase() as keyof Router<DefaultState, DefaultContext>
+      
+      (router[routerMethod] as Router<DefaultState, DefaultContext>['get'])(endpoint, routeHandler)
     })
   })
 
