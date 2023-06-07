@@ -21,8 +21,10 @@ fs.readdirSync(controllerPath)
       const [method, endpoint] = key.split(' ')
       const routeHandler = value as RouteHandler
       const routerMethod =  method.toLocaleLowerCase() as keyof Router<DefaultState, DefaultContext>
-      
-      (router[routerMethod] as Router<DefaultState, DefaultContext>['get'])(endpoint, routeHandler)
+
+      // (router[routerMethod] as Router<DefaultState, DefaultContext>['get'])(endpoint, routeHandler)
+      // @ts-ignore
+      (router[routerMethod] as any)(endpoint, routeHandler)
     })
   })
 

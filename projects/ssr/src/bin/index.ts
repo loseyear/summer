@@ -22,7 +22,7 @@ app.use(
   })
 )
 app.use(serve(path.resolve(__dirname, '../assets/')))
-app.use(serve(path.resolve(__dirname, '../../upload/')))
+app.use(serve(path.resolve(__dirname, '../../uploads/')))
 
 app.use(sql(app))
 app.use(router.routes()).use(router.allowedMethods())

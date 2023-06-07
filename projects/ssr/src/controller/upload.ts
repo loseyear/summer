@@ -1,32 +1,35 @@
 import { Context } from 'koa'
-// import fs from 'fs'
-// import path from 'path'
+import fs from 'fs'
+import path from 'path'
+
+interface FileType {
+  originalFilename: string;
+  pathname: string;
+}
 
 const upload = async (ctx: Context) => {
   try {
-    const file = ctx.request.files?.file
-
+    const file = ctx.request.files?.file as unknown as FileType
     if (!file) {
       ctx.throw(400, 'No file uploaded')
       return
     }
-    // const { fileType } = ctx.request.body
 
-    let fileName = ''
+    const { fileType } = ctx.request.body
 
-    if (file instanceof Array) {
-      fileName = file.toString()
-    } else {
-      fileName = file.toString()
-    }
-    // const fileName = `${fileType}_${Date.now()}_.${file.name.split('.').pop().toLowerCase()}`;
+    // @ts-ignore
+    const fileName = `${fileType}_${Date.now()}.${filename.split('.').pop().toLowerCase()}`
+    const filePath = path.join(__dirname, '../../uploads', fileName)
+    // @ts-ignore
+    const filepath = file?.filepath
+    fs.writeFileSync(filePath, fs.readFileSync(filepath))
 
-    const rst = null
+    const rst = fileName
 
     ctx.body = {
       code: rst ? 0 : 1,
       msg: !rst ? '没有匹配的查询结果' : '',
-      data: fileName || [],
+      data: rst || [],
     }
   } catch (err) {
     ctx.status = 400
