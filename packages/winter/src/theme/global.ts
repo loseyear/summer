@@ -51,9 +51,4 @@ img {
 #root {
   height: 100%;
 }
-
-:placeholder {
-  font-size: 12px;
-  color: #909fba;
-}
 `

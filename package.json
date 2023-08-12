@@ -7,7 +7,7 @@
   "scripts": {
     "prepare": "husky install",
     "commit": "git-cz",
-    "lint": "yarn workspace spring lint && yarn workspace ssr lint"
+    "lint": "yarn workspace ssr lint"
   },
   "config": {
     "commitizen": {
